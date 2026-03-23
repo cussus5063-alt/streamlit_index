@@ -61,7 +61,7 @@ def display_df_trend(df, col_name, select, word, year):
         x=alt.X('BAS_DD:T', axis=alt.Axis(format='%Y-%m', grid=True, gridDash=[4, 6])), y=col_name[1], tooltip=['BAS_DD', col_name[1]]
         )
     
-    hover = alt.selection_point(fields=['BAS_DD'], nearest=True, on='mouseover', empty='none')
+    hover = alt.selection_point(fields=['BAS_DD'], nearest=True, on='mouseover', empty='none', clear='mouseout')
     points = c.mark_point(size=80, filled=True, color='green').encode(opacity=alt.condition(hover, alt.value(1), alt.value(0)))
     tooltips = alt.Chart(tmp).mark_rule(color='green').encode(
       x='BAS_DD:T',
