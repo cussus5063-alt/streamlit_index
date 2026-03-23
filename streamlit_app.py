@@ -65,7 +65,7 @@ def display_df_trend(df, col_name, select, word, year):
     points = c.mark_point(size=80, filled=True, color='green').encode(opacity=alt.condition(hover, alt.value(1), alt.value(0)))
     tooltips = alt.Chart(tmp).mark_rule(color='green').encode(
       x='BAS_DD:T',
-      opacity=alt.condition(hover, alt.value(0.5), alt.value(0)),
+      opacity=alt.condition(~hover, alt.value(0.5), alt.value(0)),
       tooltip=[alt.Tooltip('BAS_DD:T', title='BAS_DD'), alt.Tooltip(col_name[1], title=col_name[1])]
       ).add_params(hover)
     
