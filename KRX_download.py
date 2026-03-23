@@ -1,8 +1,9 @@
 import requests, time
 from datetime import timedelta, datetime
 import pandas as pd
+import streamlit as st
 
-API_KEY = "7172C2DD86314CB8A4AFF7FCE3A15DAA99F344BB"
+API_KEY = st.secrets["API_KEY"]
 headers = {
     "AUTH_KEY": API_KEY,
     "User-Agent": "Mozilla/5.0"
