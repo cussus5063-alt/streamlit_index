@@ -62,14 +62,14 @@ def display_df_trend(df, col_name, select, word, year):
         )
     
     hover = alt.selection_point(fields=['BAS_DD'], nearest=True, on='mouseover', empty='none', clear='mouseout')
-    points = c.mark_point(size=80, filled=True, color='green').encode(opacity=alt.condition(~hover, alt.value(1), alt.value(0)))
+    points = c.mark_point(size=80, filled=True, color='green').encode(opacity=alt.condition(hover, alt.value(1), alt.value(0)))
     tooltips = alt.Chart(tmp).mark_rule(color='green').encode(
       x='BAS_DD:T',
       opacity=alt.condition(hover, alt.value(0.5), alt.value(0)),
       tooltip=[alt.Tooltip('BAS_DD:T', title='BAS_DD'), alt.Tooltip(col_name[1], title=col_name[1])]
-      ).add_params(hover)
+      )
     
-    chart = (c + tooltips + points)
+    chart = (c + tooltips + points).add_params(hover)
     st.altair_chart(chart, use_container_width=True)
 
 st.title(":green[국내지수/금&원유] 거래가격 차트:sunglasses:")
